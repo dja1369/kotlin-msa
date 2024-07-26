@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: kotlin-msa
+  profiles:
+    active: local
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+service:
+  message:
+    type: "simple"
+    text: "Hello, Kotlin MSA!"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+service:
+  message:
+    type: 'advanced'
+    text: "Hello, Kotlin MSA! (dev)"
