@@ -3,6 +3,9 @@ spring:
     name: kotlin-msa
   profiles:
     active: local
+  jackson:
+    default-property-inclusion: non_null
+
 ---
 spring:
   config:
