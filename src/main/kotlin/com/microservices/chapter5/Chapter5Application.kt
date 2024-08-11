@@ -1,11 +1,11 @@
-package com.msa.chapter2
+package com.microservices.chapter5
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KotlinMsaApplication
+class Chapter5Application
 
 fun main(args: Array<String>) {
-    runApplication<KotlinMsaApplication>(*args)
+    runApplication<Chapter5Application>(*args)
 }
