@@ -27,11 +27,18 @@ import java.util.concurrent.ConcurrentHashMap
         )
     }
 
-    override fun createCustomer(customerMono: Mono<Customer>): Mono<*> {
-        return customerMono.flatMap {
-            customers[it.id] = it
-            Mono.just(it)
-//            Mono.empty<Customer>()
+    override fun createCustomer(customerMono: Mono<Customer>) =
+        customerMono.flatMap {
+            if (customers[it.id] == null) {
+                customers[it.id] = it
+                Mono.just(it)
+            } else {
+                Mono.error(CustomerExistException("Customer ${it.id} already exist"))
+            }
         }
+//        customerMono.map {
+//            customers[it.id] = it
+//            it
+//            Mono.empty<Customer>()
+//        }
     }
-}
