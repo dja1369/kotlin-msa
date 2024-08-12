@@ -2,10 +2,10 @@ package com.microservices.chapter5
 
 import jakarta.annotation.PostConstruct
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
+import org.springframework.data.mongodb.core.findById
 import org.springframework.stereotype.Repository
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toMono
-import kotlin.reflect.full.callSuspendBy
 
 //interface CustomerRepository: ReactiveCrudRepository<Customer, Int> {
 //}
@@ -23,7 +23,7 @@ class CustomerRepository(private val template: ReactiveMongoTemplate) {
         initialCustomers.map { it.toMono() }
             .map { create(it).subscribe() }
 
-
+    fun findById(id: Int) = template.findById<Customer>(id)
 
     fun create(customer: Mono<Customer>) = template.save(customer)
 }
