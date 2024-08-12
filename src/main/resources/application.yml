@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: kotlin-msa
+  profiles:
+    active: local
+  jackson:
+    default-property-inclusion: non_null
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017"
+      database: "microservices"
+
